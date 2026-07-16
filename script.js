@@ -240,7 +240,7 @@ function initTriviaEngine() {
             loadQuestion();
         } else {
             // End of Quiz
-            questionTxt.textContent = `ANALYSIS COMPLETE.\nYour Score: ${score} / ${activeDeck.length}`;
+            questionTxt.textContent = `CRITICAL ANALYSIS COMPLETE.\nScore Matrix: ${score} / ${activeDeck.length}`;
             optionsContainer.innerHTML = "";
             nextBtn.textContent = "RETURN TO DECKS";
             nextBtn.classList.remove("hidden");
