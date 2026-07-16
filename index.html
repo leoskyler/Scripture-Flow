@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Eden OS // Scripture & Trivia</title>
+    <!-- Modern Tech & Display Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- ==================== TODAY TAB (EMERALD) ==================== -->
+        <section id="tab-today" class="app-page active">
+            <header class="page-header theme-emerald">
+                <span class="system-tag">SYS.LOC: DAILY_BREAD</span>
+                <h2>TODAY</h2>
+            </header>
+            
+            <div class="card-wrap scrollable-content">
+                <!-- Daily Verse Card -->
+                <div class="emerald-card dynamic-verse-card">
+                    <span class="card-badge">VERSE OF THE DAY</span>
+                    <p class="verse-text" id="daily-verse-content">"For I know the plans I have for you," declares the Lord, "plans to prosper you and not to harm you, plans to give you hope and a future."</p>
+                    <span class="verse-reference" id="daily-verse-ref">Jeremiah 29:11</span>
+                </div>
+
+                <!-- Lord's Prayer Card -->
+                <div class="prayer-card">
+                    <h3>THE LORD'S PRAYER</h3>
+                    <div class="prayer-body">
+                        <p>Our Father, who art in heaven, hallowed be Thy name. Thy kingdom come, Thy will be done, on earth as it is in heaven.</p>
+                        <p>Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us.</p>
+                        <p>And lead us not into temptation, but deliver us from evil. For Thine is the kingdom, the power, and the glory, forever and ever. Amen.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BIBLE TAB (COBALT) ==================== -->
+        <section id="tab-bible" class="app-page">
+            <header class="page-header theme-cobalt">
+                <span class="system-tag">SYS.LOC: COBALT_LIBRARY</span>
+                <h2>HOLY BIBLE</h2>
+            </header>
+
+            <div class="bible-controls">
+                <select id="book-select" class="selector-dropdown"><option>Genesis</option></select>
+                <select id="chapter-select" class="selector-dropdown"><option>1</option></select>
+            </div>
+
+            <div class="bible-reader scrollable-content">
+                <div id="bible-text-container">
+                    <!-- Verses will load here dynamically -->
+                    <p class="loading-placeholder">Initializing library...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== TRIVIA TAB (AMBER) ==================== -->
+        <section id="tab-trivia" class="app-page">
+            <header class="page-header theme-amber">
+                <span class="system-tag">SYS.LOC: ARCADE_TEST</span>
+                <h2>BIBLE TRIVIA</h2>
+            </header>
+
+            <div class="scrollable-content trivia-wrapper">
+                <!-- Category Selector (Visible when not actively in a quiz) -->
+                <div id="trivia-categories" class="categories-grid">
+                    <button class="category-card" data-category="creation">
+                        <span class="cat-icon">🌱</span>
+                        <h4>Creation</h4>
+                        <p>Genesis & Beginnings</p>
+                    </button>
+                    <button class="category-card" data-category="gospels">
+                        <span class="cat-icon">✝️</span>
+                        <h4>The Gospels</h4>
+                        <p>Matthew, Mark, Luke, John</p>
+                    </button>
+                    <button class="category-card" data-category="ot">
+                        <span class="cat-icon">📜</span>
+                        <h4>Old Testament</h4>
+                        <p>Law & Prophets</p>
+                    </button>
+                    <button class="category-card" data-category="nt">
+                        <span class="cat-icon">⚡</span>
+                        <h4>New Testament</h4>
+                        <p>Epistles & Revelation</p>
+                    </button>
+                </div>
+
+                <!-- Active Quiz Container (Hidden initially) -->
+                <div id="quiz-arena" class="quiz-arena hidden">
+                    <div class="quiz-header">
+                        <span id="quiz-category-title">CREATION TRIVIA</span>
+                        <span id="quiz-progress">1/5</span>
+                    </div>
+                    <div class="question-card">
+                        <p id="question-text">Loading question...</p>
+                    </div>
+                    <div class="options-container" id="options-container">
+                        <!-- Dynamic options buttons go here -->
+                    </div>
+                    <button id="next-question-btn" class="next-btn hidden">NEXT QUESTION</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ME TAB (AMETHYST) ==================== -->
+        <section id="tab-me" class="app-page">
+            <header class="page-header theme-amethyst">
+                <span class="system-tag">SYS.LOC: PROFILE_CORE</span>
+                <h2>ME</h2>
+            </header>
+
+            <div class="scrollable-content me-wrapper">
+                <!-- Account Profile Header -->
+                <div class="profile-header">
+                    <div class="avatar">⚡</div>
+                    <div>
+                        <h3 class="profile-name">♣︎leoskyler♣︎</h3>
+                        <p class="profile-title">Lead System Developer</p>
+                    </div>
+                </div>
+
+                <!-- Journal / Notes Section -->
+                <div class="notes-container">
+                    <h3>STUDY JOURNAL</h3>
+                    <textarea id="journal-input" placeholder="Write down your reflections, thoughts, or saved verses..."></textarea>
+                    <button id="save-note-btn" class="save-note-btn">SAVE REFLECTION</button>
+                    <div id="saved-notes-list" class="saved-notes-list">
+                        <!-- Saved notes appear here dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== BOTTOM SYSTEM NAVIGATION ==================== -->
+        <nav class="system-navigation-bar">
+            <button class="nav-item active" data-target="tab-today">
+                <span class="nav-icon today-icon">📅</span>
+                <span class="nav-label">Today</span>
+            </button>
+            <button class="nav-item" data-target="tab-bible">
+                <span class="nav-icon bible-icon">📖</span>
+                <span class="nav-label">Bible</span>
+            </button>
+            <button class="nav-item" data-target="tab-trivia">
+                <span class="nav-icon study-icon">❓</span>
+                <span class="nav-label">Trivia</span>
+            </button>
+            <button class="nav-item" data-target="tab-me">
+                <span class="nav-icon me-icon">👤</span>
+                <span class="nav-label">Me</span>
+            </button>
+        </nav>
+    </div>
+
+</body>
+</html>
