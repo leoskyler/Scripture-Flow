@@ -1,0 +1,584 @@
+/* ==========================================================================
+   SCRIPTURE FLOW - CORE STYLES & VARIABLE THEMES
+   ========================================================================== */
+
+:root {
+    --bg-dark: #0a0c10;
+    --bg-card: #12161f;
+    --border-color: rgba(255, 255, 255, 0.07);
+    --text-primary: #f0f4f8;
+    --text-muted: #8a99ad;
+    
+    /* Tab Specific Theme Colors */
+    --emerald: #00e676;
+    --cobalt: #2979ff;
+    --amber: #ffc400;
+    --amethyst: #d500f9;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* App Viewport Container (Simulates a mobile OS) */
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    background: #0f121a;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    border-left: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+}
+
+/* --- Smooth Tab View Switching --- */
+.app-page {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+    height: calc(100vh - 70px); /* Leaves exact space for bottom nav */
+    overflow: hidden;
+}
+
+.app-page.active {
+    display: flex;
+}
+
+.scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-bottom: 40px;
+}
+
+/* Custom Scrollbar */
+.scrollable-content::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollable-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* ==========================================================================
+   PAGE HEADER STYLES (DISTINCT COLORS)
+   ========================================================================== */
+
+.page-header {
+    padding: 25px 20px 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    background: linear-gradient(180deg, rgba(15, 18, 26, 0.95) 0%, rgba(15, 18, 26, 0.5) 100%);
+    backdrop-filter: blur(10px);
+}
+
+.page-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    margin-top: 5px;
+}
+
+.system-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    opacity: 0.6;
+}
+
+/* Header Themes */
+.theme-emerald h2 { color: var(--emerald); text-shadow: 0 0 15px rgba(0, 230, 118, 0.3); }
+.theme-emerald .system-tag { color: var(--emerald); }
+
+.theme-cobalt h2 { color: var(--cobalt); text-shadow: 0 0 15px rgba(41, 121, 255, 0.3); }
+.theme-cobalt .system-tag { color: var(--cobalt); }
+
+.theme-amber h2 { color: var(--amber); text-shadow: 0 0 15px rgba(255, 196, 0, 0.3); }
+.theme-amber .system-tag { color: var(--amber); }
+
+.theme-amethyst h2 { color: var(--amethyst); text-shadow: 0 0 15px rgba(213, 0, 249, 0.3); }
+.theme-amethyst .system-tag { color: var(--amethyst); }
+
+
+/* ==========================================================================
+   TAB 1: TODAY CARD STYLES (EMERALD)
+   ========================================================================== */
+
+.emerald-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(0, 230, 118, 0.15);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.card-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    background: rgba(0, 230, 118, 0.1);
+    color: var(--emerald);
+    padding: 4px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+    border: 1px solid rgba(0, 230, 118, 0.2);
+}
+
+.verse-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.verse-reference {
+    display: block;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    color: var(--emerald);
+    font-weight: 700;
+}
+
+.prayer-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.prayer-card h3 {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.prayer-body p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+
+/* ==========================================================================
+   TAB 2: BIBLE INTERACTIVE READER (COBALT)
+   ========================================================================== */
+
+.bible-controls {
+    display: flex;
+    gap: 10px;
+    padding: 15px 20px;
+    background: rgba(15, 18, 26, 0.8);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.selector-dropdown {
+    flex: 1;
+    background: #181d28;
+    color: var(--text-primary);
+    border: 1px solid rgba(41, 121, 255, 0.2);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.selector-dropdown:focus {
+    border-color: var(--cobalt);
+}
+
+.bible-reader {
+    background: #0d1017;
+}
+
+.bible-verse-row {
+    margin-bottom: 18px;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.verse-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--cobalt);
+    margin-right: 8px;
+    display: inline-block;
+    vertical-align: super;
+}
+
+.loading-placeholder {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+
+/* ==========================================================================
+   TAB 3: TRIVIA CHALLENGE STYLES (AMBER)
+   ========================================================================== */
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.category-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.category-card:hover, .category-card:active {
+    transform: translateY(-2px);
+    border-color: var(--amber);
+    background: rgba(255, 196, 0, 0.02);
+}
+
+.cat-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.category-card h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.category-card p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Trivia Game Arena */
+.quiz-arena {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 196, 0, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--amber);
+    border-bottom: 1px solid rgba(255, 196, 0, 0.15);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.question-card {
+    margin-bottom: 25px;
+}
+
+#question-text {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 14px 18px;
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--amber);
+    background: rgba(255, 196, 0, 0.04);
+}
+
+/* Correct/Incorrect Option States */
+.option-btn.correct {
+    background: rgba(0, 230, 118, 0.15) !important;
+    border-color: var(--emerald) !important;
+    color: #fff;
+}
+
+.option-btn.wrong {
+    background: rgba(255, 23, 68, 0.15) !important;
+    border-color: #ff1744 !important;
+    color: #fff;
+}
+
+.next-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: var(--amber);
+    color: #120c1f;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   TAB 4: ME JOURNAL PROFILE STYLES (AMETHYST)
+   ========================================================================== */
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(213, 0, 249, 0.15);
+    border: 2px solid var(--amethyst);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    color: var(--amethyst);
+    box-shadow: 0 0 12px rgba(213, 0, 249, 0.3);
+}
+
+.profile-name {
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.profile-title {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Notes & Journal Space */
+.notes-container h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    color: var(--amethyst);
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+}
+
+#journal-input {
+    width: 100%;
+    height: 120px;
+    background: #141722;
+    border: 1px solid rgba(213, 0, 249, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    margin-bottom: 12px;
+}
+
+#journal-input:focus {
+    border-color: var(--amethyst);
+}
+
+.save-note-btn {
+    width: 100%;
+    background: var(--amethyst);
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-bottom: 25px;
+}
+
+.saved-note {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 3px solid var(--amethyst);
+    padding: 15px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.note-time {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.note-text {
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+
+/* ==========================================================================
+   BOTTOM NAVIGATION BAR (Tactile Mobile Structure)
+   ========================================================================== */
+
+.system-navigation-bar {
+    height: 70px;
+    background: #0c0e14;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.nav-item {
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 25%;
+    height: 100%;
+    transition: all 0.25s ease-in-out;
+}
+
+.nav-icon {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    opacity: 0.6;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+/* Active Navigation Actions per Theme Colors */
+.nav-item.active {
+    color: var(--text-primary);
+}
+
+.nav-item.active .nav-icon {
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+/* Today Tab Color */
+.nav-item.active[data-target="tab-today"] .nav-label { color: var(--emerald); }
+.nav-item.active[data-target="tab-today"] .nav-icon { filter: drop-shadow(0 0 5px rgba(0, 230, 118, 0.4)); }
+
+/* Bible Tab Color */
+.nav-item.active[data-target="tab-bible"] .nav-label { color: var(--cobalt); }
+.nav-item.active[data-target="tab-bible"] .nav-icon { filter: drop-shadow(0 0 5px rgba(41, 121, 255, 0.4)); }
+
+/* Trivia Tab Color */
+.nav-item.active[data-target="tab-trivia"] .nav-label { color: var(--amber); }
+.nav-item.active[data-target="tab-trivia"] .nav-icon { filter: drop-shadow(0 0 5px rgba(255, 196, 0, 0.4)); }
+
+/* Me Tab Color */
+.nav-item.active[data-target="tab-me"] .nav-label { color: var(--amethyst); }
+.nav-item.active[data-target="tab-me"] .nav-icon { filter: drop-shadow(0 0 5px rgba(213, 0, 249, 0.4)); }
+
+
+/* ==========================================================================
+   DEVELOPER SIGNATURE FOOTER STYLES
+   ========================================================================== */
+
+.zen-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid var(--border-color);
+    margin-top: auto;
+}
+
+.developer-signature {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    letter-spacing: 0.05em;
+}
+
+.developer-signature .bolt-icon {
+    color: var(--amber);
+    text-shadow: 0 0 6px rgba(255, 196, 0, 0.5);
+}
+
+.developer-signature .handle {
+    color: var(--amethyst);
+}
+
+/* Hide elements dynamically */
+.hidden {
+    display: none !important;
+}
