@@ -448,9 +448,8 @@ function injectSignature() {
         footer.style.borderTop = "1px solid rgba(255, 255, 255, 0.05)";
         footer.style.marginTop = "30px";
         
-        // Developer Brand Signature
+        // Clean Developer Brand Signature (Eden OS prefix removed)
         footer.innerHTML = `
-            <span style="color: #888;">Eden OS // </span>
             <span style="color: #00e5ff; font-weight: bold; text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);">♣︎leoskyler♣︎</span>
         `;
         
