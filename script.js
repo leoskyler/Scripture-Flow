@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTriviaEngine();
     initJournalEngine();
     loadDailyVerse();
+    injectSignature(); // Initializes the signature engine
 });
 
 /* ==========================================================================
@@ -331,4 +332,33 @@ function loadDailyVerse() {
         verseTextEl.textContent = `"${todayVerse.text}"`;
         verseRefEl.textContent = todayVerse.ref;
     }
+}
+
+/* ==========================================================================
+   6. SIGNATURE INJECTOR ENGINE
+   ========================================================================== */
+function injectSignature() {
+    const pages = document.querySelectorAll(".app-page");
+    
+    pages.forEach(page => {
+        // Create footer element
+        const footer = document.createElement("footer");
+        footer.className = "app-signature";
+        footer.style.textAlign = "center";
+        footer.style.padding = "20px 10px 40px 10px";
+        footer.style.fontSize = "0.85rem";
+        footer.style.letterSpacing = "2px";
+        footer.style.textTransform = "uppercase";
+        footer.style.opacity = "0.6";
+        footer.style.borderTop = "1px solid rgba(255, 255, 255, 0.05)";
+        footer.style.marginTop = "30px";
+        
+        // Developer Brand Signature
+        footer.innerHTML = `
+            <span style="color: #888;">Scripture Flow // </span>
+            <span style="color: #00e5ff; font-weight: bold; text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);">♣︎leoskyler♣︎</span>
+        `;
+        
+        page.appendChild(footer);
+    });
 }
