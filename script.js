@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTriviaEngine();
     initJournalEngine();
     loadDailyVerse();
-    injectSignature(); // Initializes the signature engine
+    injectSignature(); // Initializes the signature engine safely
 });
 
 /* ==========================================================================
@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
 function initNavigation() {
     const navItems = document.querySelectorAll(".nav-item");
     const pages = document.querySelectorAll(".app-page");
+
+    if (navItems.length === 0) return;
 
     navItems.forEach(item => {
         item.addEventListener("click", () => {
@@ -418,12 +420,22 @@ function loadDailyVerse() {
 }
 
 /* ==========================================================================
-   6. SIGNATURE INJECTOR ENGINE
+   6. SAFE SIGNATURE INJECTOR ENGINE
    ========================================================================== */
 function injectSignature() {
-    const pages = document.querySelectorAll(".app-page");
+    // We try targeting both `.app-page` and `.section` classes to be absolutely safe
+    let pages = document.querySelectorAll(".app-page");
+    if (pages.length === 0) {
+        pages = document.querySelectorAll(".section");
+    }
+    
+    // If we still didn't find any page divs, let's gracefully exit so it never crashes the script!
+    if (pages.length === 0) return;
     
     pages.forEach(page => {
+        // Prevent duplicate signatures if this gets called multiple times
+        if (page.querySelector(".app-signature")) return;
+
         // Create footer element
         const footer = document.createElement("footer");
         footer.className = "app-signature";
@@ -438,7 +450,7 @@ function injectSignature() {
         
         // Developer Brand Signature
         footer.innerHTML = `
-            <span style="color: #888;">Scripture Flow // </span>
+            <span style="color: #888;">Eden OS // </span>
             <span style="color: #00e5ff; font-weight: bold; text-shadow: 0 0 5px rgba(0, 229, 255, 0.4);">♣︎leoskyler♣︎</span>
         `;
         
