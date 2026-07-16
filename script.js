@@ -240,7 +240,7 @@ function initTriviaEngine() {
             loadQuestion();
         } else {
             // End of Quiz
-            questionTxt.textContent = `CRITICAL ANALYSIS COMPLETE.\nScore Matrix: ${score} / ${activeDeck.length}`;
+            questionTxt.textContent = `ANALYSIS COMPLETE.\nYour Score: ${score} / ${activeDeck.length}`;
             optionsContainer.innerHTML = "";
             nextBtn.textContent = "RETURN TO DECKS";
             nextBtn.classList.remove("hidden");
@@ -316,4 +316,19 @@ function loadDailyVerse() {
     const dailyVerses = [
         { text: "For I know the plans I have for you,\" declares the Lord, \"plans to prosper you and not to harm you, plans to give you hope and a future.", ref: "Jeremiah 29:11" },
         { text: "The Lord is my shepherd; I shall not want. He makes me lie down in green pastures; He leads me beside still waters.", ref: "Psalm 23:1-2" },
-        { text: "Do not be anxious about anything,Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+        { text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.", ref: "Philippians 4:6" }
+    ];
+
+    // Pick a verse based on the current day of the year
+    const now = new Date();
+    const day = now.getDate() % dailyVerses.length;
+    const todayVerse = dailyVerses[day];
+
+    const verseTextEl = document.getElementById("daily-verse-content");
+    const verseRefEl = document.getElementById("daily-verse-ref");
+
+    if (verseTextEl && verseRefEl) {
+        verseTextEl.textContent = `"${todayVerse.text}"`;
+        verseRefEl.textContent = todayVerse.ref;
+    }
+}
