@@ -558,20 +558,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 0;
+    padding: 25px 0 10px 0; /* Clean balanced spacing at the bottom of the content card list */
     border-top: 1px solid var(--border-color);
-    margin-top: auto;
+    margin-top: 25px; /* Pushes signature down gracefully away from the content */
 }
 
 .developer-signature {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 700;
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 4px;
-    letter-spacing: 0.05em;
+    justify-content: center;
+    gap: 6px;
+    letter-spacing: 0.08em;
 }
 
 .developer-signature .bolt-icon {
@@ -580,7 +581,8 @@ body {
 }
 
 .developer-signature .handle {
-    color: var(--amethyst);
+    color: var(--emerald); /* Styled with the Emerald theme color for the Today tab */
+    text-shadow: 0 0 8px rgba(0, 230, 118, 0.25);
 }
 
 /* Hide elements dynamically */
